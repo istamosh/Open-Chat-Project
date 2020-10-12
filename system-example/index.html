@@ -55,5 +55,24 @@
     <form action="">
         <input id="m" autocomplete="off" /><button>Send</button>
     </form>
+
+    <! snippet below is added by myself>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            var socket = io(); //triggers connection/disconnection event message on .ts
+            $('form').submit(function (e) {
+                e.preventDefault(); //prevent page reloading
+                socket.emit('chat message', $('#m').val()); //emitting event of user chat message content for index.ts to use
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg) {
+                $('#messages').append($('<li>').text(msg)); //append sent text into chat box
+            });
+        }); 
+    </script>
+
 </body>
 </html>
