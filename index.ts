@@ -1,0 +1,1 @@
+const content = require('fs').readFileSync(__dirname + '/index.html', 'utf8')

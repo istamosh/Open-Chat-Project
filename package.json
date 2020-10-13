@@ -1,7 +1,6 @@
 {
   "name": "open-chat-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "devStart": "nodemon index.ts"
@@ -11,7 +10,7 @@
     "url": "git+https://github.com/istamosh/Open-Chat-Project.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/istamosh/Open-Chat-Project/issues"
   },
@@ -21,5 +20,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "description": ""
 }
