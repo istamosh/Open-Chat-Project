@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/istamosh/Open-Chat-Project#readme",
   "dependencies": {
+    "@types/node": "^14.11.8",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
