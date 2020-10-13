@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Open Chat Project</title>
+    <title>Placeholder</title>
 
     <style>
         * {
@@ -53,8 +53,27 @@
     </style>
 </head>
 <body>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
 
+    <ul id="events"></ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const $events = document.getElementById('events');
 
+        const newItem = (content) => {
+            const item = document.createElement('li');
+            item.innerText = content;
+            return item;
+        };
 
+        const socket = io();
+
+        socket.on('connect', () => {
+            $events.appendChild(newItem('connect'));
+        });
+    </script>
 </body>
 </html>
