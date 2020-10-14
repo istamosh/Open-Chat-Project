@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+// prevent app from breaking upon launch
 import Join from './components/Join';
 import Chat from './components/Chat';
 
