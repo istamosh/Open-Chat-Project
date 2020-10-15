@@ -16,6 +16,11 @@ const ioserver = socket(server);
 ioserver.on('connection', (socket) => {
     console.log('someone had connected.') // callback of connected user notification
 
+    socket.on('join', ({ name, room }, callback) => { // send back callback parameter value to clients' specific event emitter
+        console.log(name, room); // getting those emitted data from Clientside join event transmission
+
+    })
+
     socket.on('disconnect', () => {
         console.log('someone left.') // callback inside separate socket.on disconnection method, notify cmd about disconnected user.
     })
