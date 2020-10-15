@@ -10,6 +10,7 @@ let socket;
 // queryString.parse() is used for parsing the const. data value and inserted in Object variable inside browser Inspect element.
 // make socket as endpoint variable
 // re-render the queryString using ENDPOINT & location.search inside an array so it will only create one instance of socket connection
+// command the socket.io to emit parsed 'name' and 'room' at joining event
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
@@ -23,7 +24,8 @@ const Chat = ({ location }) => {
         setName(name);
         setRoom(room);
 
-        console.log(socket);
+        socket.emit('join', { name, room });
+
     }, [ENDPOINT, location.search])
 
     return (
