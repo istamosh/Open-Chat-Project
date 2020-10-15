@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const ioserver = socket(server);
 
 // connection event function sector
-io.on('connection', (socket) => {
+ioserver.on('connection', (socket) => {
     console.log('someone had connected.') // callback of connected user notification
 
     socket.on('disconnect', () => {

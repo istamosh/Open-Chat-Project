@@ -1,6 +1,8 @@
 import React, { useState } from 'react'; // importing Reacts' useState hook
 import { Link } from 'react-router-dom'; // importing react-router-doms' Link hook
 
+// importing .css file into this script
+import './Join.css';
 
 const Join = () => {
     const [name, setName] = useState(''); // empty useState variable that consist of name and setName parameter as name and setName string value to be used on logon screen
@@ -8,6 +10,8 @@ const Join = () => {
 
     // HTML JSX code to be delivered into App.js
     // mt-20 is margin top 20
+    // Link codeblock is rigged with onClick event to prevent app break when user tried to input empty string into both Name and Room boxes
+    // if onClick is passed, Link will generate main address depending on users' name and room name input
     return (
         <div className="joinOuterContainer">
             <div className="joinInnerContainer">

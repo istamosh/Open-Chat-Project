@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\components"
   ],
-  "SelectedNode": "\\client",
+  "SelectedNode": "\\client\\src\\components\\Join.js",
   "PreviewInSolutionExplorer": false
 }
