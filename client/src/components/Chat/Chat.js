@@ -14,6 +14,10 @@ let socket;
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+
+    const [message, setMessage] = useState(''); // adding useEffect for sent message by user
+    const [messages, setMessages] = useState([]); // (plural) adding useEffect for sent messages by user in room across all users
+
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
@@ -36,6 +40,13 @@ const Chat = ({ location }) => {
         }
 
     }, [ENDPOINT, location.search])
+
+    // adding useEffect listener from sent message by user in backend section
+    useEffect(() => {
+        socket.on('message', (message) => {
+            setMessages([...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
+        })
+    }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
 
     return (
         <h1>Chat</h1>
