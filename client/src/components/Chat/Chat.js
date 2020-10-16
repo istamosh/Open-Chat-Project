@@ -21,16 +21,19 @@ const Chat = ({ location }) => {
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
-        const { name, room } = queryString.parse(location.search)
+        const { name, room } = queryString.parse(location.search);
 
         socket = ioClient(ENDPOINT);
 
         setName(name);
         setRoom(room);
 
-        socket.emit('join', { name, room }, () => {
-            
-        })
+        // emitting join event with name and room params and check for errors and alert about it
+        socket.emit('join', { name, room }, (error) => {
+            if (error) {
+                alert(error);
+            }
+        });
 
         return () => { // unmounting, disconnect effect
             socket.emit('disconnect'); // when leaving the chat
@@ -39,19 +42,42 @@ const Chat = ({ location }) => {
 
         }
 
-    }, [ENDPOINT, location.search])
+    }, [ENDPOINT, location.search]);
 
     // adding useEffect listener from sent message by user in backend section
     useEffect(() => {
         socket.on('message', (message) => {
             setMessages([...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
-        })
+        });
     }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
 
+    // sendMessage event handler/listener from serverside index.js
+    // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.
+    const sendMessage = (event) => {
+        event.preventDefault();
+
+        if (message) {
+            socket.emit('sendMessage', message, () => setMessage(''));
+        }
+    }
+
+    // message testing purpose
+    console.log(message, messages);
+
+    // JSX chat layout
+    // check if Enter key is pressed in keypress activity event
     return (
-        <h1>Chat</h1>
-    )
-};
+        <div className="outerContainer">
+            <div className="container">
+                <input
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
+                />
+            </div>
+        </div>
+    );
+}
 
 export default Chat;
 

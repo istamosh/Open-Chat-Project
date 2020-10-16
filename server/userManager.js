@@ -19,7 +19,7 @@ const addUser = ({ id, name, room }) => {
     // then pushed into an users array pool
     users.push(user);
     // exit this function and code carrying users' value.
-    return { user }
+    return { user };
 }
 
 // removing one user instance from array pool upon leaving
@@ -43,4 +43,4 @@ const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
 // exports those functions above to be used as a module
 // server-side index.js will be using these
-module.exports(addUser, removeUser, getUser, getUsersInRoom);
+module.exports = { addUser, removeUser, getUser, getUsersInRoom };
