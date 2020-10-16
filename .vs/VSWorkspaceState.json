@@ -3,8 +3,11 @@
     "",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\components"
+    "\\client\\src\\components",
+    "\\client\\src\\components\\Chat",
+    "\\client\\src\\components\\Join",
+    "\\server"
   ],
-  "SelectedNode": "\\client\\src\\components\\Join.js",
+  "SelectedNode": "\\client",
   "PreviewInSolutionExplorer": false
 }
