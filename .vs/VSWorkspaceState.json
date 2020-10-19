@@ -8,6 +8,6 @@
     "\\client\\src\\components\\Join",
     "\\server"
   ],
-  "SelectedNode": "\\client",
+  "SelectedNode": "\\client\\src\\components\\Chat\\Chat.js",
   "PreviewInSolutionExplorer": false
 }
