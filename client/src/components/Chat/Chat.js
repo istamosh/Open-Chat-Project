@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import ioClient from 'socket.io-client';
 
+import './Chat.css';
+import InfoBar from '../InfoBar/InfoBar';
+
 // make empty variable for ioClient
 let socket;
 
@@ -66,14 +69,18 @@ const Chat = ({ location }) => {
 
     // JSX chat layout
     // check if Enter key is pressed in keypress activity event
+    // passing room property value into InfoBar JSX
     return (
         <div className="outerContainer">
             <div className="container">
+                <InfoBar room={room} />
+                {/*
                 <input
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                 />
+                */}
             </div>
         </div>
     );
