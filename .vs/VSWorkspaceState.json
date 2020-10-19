@@ -4,10 +4,11 @@
     "\\client",
     "\\client\\src",
     "\\client\\src\\components",
-    "\\client\\src\\components\\Chat",
+    "\\client\\src\\components\\InfoBar",
+    "\\client\\src\\components\\Input",
     "\\client\\src\\components\\Join",
     "\\server"
   ],
-  "SelectedNode": "\\client\\src\\components\\Chat\\Chat.js",
+  "SelectedNode": "\\server\\index.js",
   "PreviewInSolutionExplorer": false
 }
