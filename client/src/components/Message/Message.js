@@ -15,7 +15,10 @@ const Message = ({ message: { user, text }, name }) => {
 
     // ternary statement here
     // pr-10 is padding right 10
-    // if it's sent by current user, name of the sender will be placed in top JSX, otherwise it will be placed at bottom JSX
+    // if the one message is sent by user, padding will init. first and make chat bubble padded to the right
+    // the arrangement is local username (with space letter) then the bubble
+    // otherwise, padding will init. lastly and make chat bubble padded to the left
+    // the arrangement will be opposite and so do the padding direction
     return (
         isSentByCurUser
             ? (

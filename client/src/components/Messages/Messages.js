@@ -3,6 +3,8 @@ import React from 'react';
 // now using react stb chat module
 import ScrollToBottom from 'react-scroll-to-bottom';
 
+import Message from '../Message/Message';
+
 import './Messages.css';
 
 // JSX input code here
