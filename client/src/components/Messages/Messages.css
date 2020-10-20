@@ -1,0 +1,9 @@
+/* code by adrianhajdin
+    GitHub: https://github.com/adrianhajdin/
+*/
+
+.messages {
+    padding: 5% 0;
+    overflow: auto;
+    flex: auto;
+}

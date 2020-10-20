@@ -7,6 +7,7 @@ import './Chat.css';
 
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
+import Messages from '../Messages/Messages';
 
 // make empty variable for ioClient
 let socket;
@@ -73,11 +74,12 @@ const Chat = ({ location }) => {
     // check if Enter key is pressed in keypress activity event
     // passing room property value into InfoBar JSX
     // retrieve passed parameter values from Input.js into input function
+    // sends both messages and name property into Messages.js params
     return (
         <div className="outerContainer">
             <div className="container">
                 <InfoBar room={room} />
-
+                <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
