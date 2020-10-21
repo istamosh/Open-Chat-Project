@@ -10,8 +10,9 @@ import './Messages.css';
 // JSX input code here
 // using react-scroll-to-bottom module by wrapping JSX
 // send messages params and name into chat blocks
-const Messages = ({ messages, name}) => (
-    <ScrollToBottom>
+// pinpoint className css that using stb module
+const Messages = ({ messages, name }) => (
+    <ScrollToBottom className={messages}>
         {messages.map((message, i) =>
             <div key={i}>
                 <Message

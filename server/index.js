@@ -42,6 +42,8 @@ ioserver.on('connection', (socket) => {
 
         // if not, join the said room by user request
         socket.join(user.room);
+        // emit roomData property that consist of name and all logged users to all users in that said room
+        ioserver.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
         // positive callback when no error is occured
         callback();
     });
@@ -50,12 +52,17 @@ ioserver.on('connection', (socket) => {
     // then callback this function to frontend
     // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
     // the sequence will be: dc, user left, reconnect, connect, user join, greeted.
+    // also emit roomData in sendMessage event
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id);
 
         ioserver.to(user.room).emit('message', {
             user: user.name,
             text: message
+        });
+        ioserver.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUsersInRoom(user.room)
         });
 
         callback();
