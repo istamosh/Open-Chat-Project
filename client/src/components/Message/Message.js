@@ -1,4 +1,5 @@
 import React from 'react';
+import iHateEmoji from 'react-emoji';
 
 import './Message.css';
 
