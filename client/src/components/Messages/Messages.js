@@ -12,7 +12,7 @@ import './Messages.css';
 // send messages params and name into chat blocks
 // pinpoint className css that using stb module
 const Messages = ({ messages, name }) => (
-    <ScrollToBottom className={messages}>
+    <ScrollToBottom className="messages">
         {messages.map((message, i) =>
             <div key={i}>
                 <Message

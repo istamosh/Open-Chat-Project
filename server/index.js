@@ -50,9 +50,6 @@ ioserver.on('connection', (socket) => {
 
     // expect send-message event from user using their ID and emit those message event containing a payload of users' name and their message text informations
     // then callback this function to frontend
-    // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
-    // the sequence will be: dc, user left, reconnect, connect, user join, greeted.
-    // also emit roomData in sendMessage event
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id);
 
@@ -60,21 +57,25 @@ ioserver.on('connection', (socket) => {
             user: user.name,
             text: message
         });
+
+        callback();
+    });
+
+    // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
+    // the sequence will be: dc, user left, reconnect, connect, user join, greeted.
+    // also emit roomData in disconnect event
+    socket.on('disconnect', () => {
+        const user = removeUser(socket.id);
+
+        ioserver.to(user.room).emit('message', {
+            user: 'admin',
+            text: `${user.name} has left.`
+        });
         ioserver.to(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room)
         });
 
-        callback();
-    });
-
-    socket.on('disconnect', () => {
-        const user = removeUser(socket.id);
-
-        ioserver.to(user.room).emit('message'), {
-            user: 'admin',
-            text: `${user.name} has left.`
-        }
     });
 });
 
