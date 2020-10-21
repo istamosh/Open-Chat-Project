@@ -48,6 +48,8 @@ ioserver.on('connection', (socket) => {
 
     // expect send-message event from user using their ID and emit those message event containing a payload of users' name and their message text informations
     // then callback this function to frontend
+    // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
+    // the sequence will be: dc, user left, reconnect, connect, user join, greeted.
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id);
 
@@ -60,9 +62,13 @@ ioserver.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('someone left.'); // callback inside separate socket.on disconnection method, notify cmd about disconnected user.
-    });
+        const user = removeUser(socket.id);
 
+        io.to(user.room).emit('message'), {
+            user: 'admin',
+            text: `${user.name} has left.`
+        }
+    });
 });
 
 // call it as middleware by passing the router dir
