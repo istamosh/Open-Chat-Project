@@ -64,7 +64,7 @@ ioserver.on('connection', (socket) => {
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
 
-        io.to(user.room).emit('message'), {
+        ioserver.to(user.room).emit('message'), {
             user: 'admin',
             text: `${user.name} has left.`
         }
