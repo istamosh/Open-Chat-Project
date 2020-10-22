@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; // importing react-router-doms' Link ho
 import './Join.css';
 
 const Join = () => {
-    const [name, setName] = useState(''); // empty useState variable that consist of name and setName parameter as name and setName string value to be used on logon screen
+    const [name, setName] = useState(''); // empty useState variable consists of name and setName parameter as name and setName string value to be used on logon screen
     const [room, setRoom] = useState(''); // same as above
 
     // HTML JSX code to be delivered into App.js
@@ -17,10 +17,26 @@ const Join = () => {
             <div className="joinInnerContainer">
                 <h1 className="heading">Join</h1>
 
-                <div><input placeholder="Name" className="joinInput" type="text" onChange={(event) => setName(event.target.value)} /></div>
-                <div><input placeholder="Room" className="joinInput mt-20" type="text" onChange={(event) => setRoom(event.target.value)} /></div>
+                <div><input
+                    placeholder="Name"
+                    className="joinInput"
+                    type="text"
+                    onChange={(event) =>
+                        setName(event.target.value)} />
+                </div>
+                <div><input
+                    placeholder="Room"
+                    className="joinInput mt-20"
+                    type="text"
+                    onChange={(event) =>
+                        setRoom(event.target.value)} />
+                </div>
 
-                <Link onClick={event => (!name || !room) ? event.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
+                <Link onClick={event => (!name || !room)
+                    ? event.preventDefault()
+                    : null} to={
+                        `/chat?name=${name}&room=${room}`
+                    }>
                     <button className="button mt-20" type="submit">Sign In</button>
                 </Link>
             </div>
