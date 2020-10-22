@@ -20,20 +20,21 @@ const Message = ({ message: { user, text }, name }) => {
     // the arrangement is local username (with space letter) then the bubble
     // otherwise, padding will init. lastly and make chat bubble padded to the left
     // the arrangement will be opposite and so do the padding direction
+    // using Emojis' Emojify built-in method and pass message text as a probe
     return (
         isSentByCurUser
             ? (
                 <div className="messageContainer justifyEnd">
                     <p className="sentText pr-10">{trimName}</p>
                     <div className="messageBox backgroundBlue">
-                        <p className="messageText colorWhite">{text}</p>
+                        <p className="messageText colorWhite">{iHateEmoji.emojify(text)}</p>
                     </div>
                 </div>
             )
             : (
                 <div className="messageContainer justifyStart">
                     <div className="messageBox backgroundLight">
-                        <p className="messageText colorDark">{text}</p>
+                        <p className="messageText colorDark">{iHateEmoji.emojify(text)}</p>
                     </div>
                     <p className="sentText pl-10">{user}</p>
                 </div>
