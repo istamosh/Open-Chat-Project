@@ -13,3 +13,7 @@ const UserContainer = ({ users }) => (
 );
 
 export default UserContainer;
+
+//note for progression
+//there is something related to clients' useState callback func.
+//and server-side codes
