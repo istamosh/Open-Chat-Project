@@ -8,9 +8,9 @@ const Message = ({ message: { user, text }, name }) => {
     // make first check before sending any message by any user
     let isSentByCurUser = false;
 
-    const trimName = name.trim().toLowerCase();
+    const trimmedName = name.trim().toLowerCase();
 
-    if (user === trimName) {
+    if (user === trimmedName) {
         isSentByCurUser = true;
     }
 
@@ -25,7 +25,7 @@ const Message = ({ message: { user, text }, name }) => {
         isSentByCurUser
             ? (
                 <div className="messageContainer justifyEnd">
-                    <p className="sentText pr-10">{trimName}</p>
+                    <p className="sentText pr-10">{trimmedName}</p>
                     <div className="messageBox backgroundBlue">
                         <p className="messageText colorWhite">{iHateEmoji.emojify(text)}</p>
                     </div>
