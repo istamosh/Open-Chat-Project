@@ -1,4 +1,5 @@
 import React from 'react';
+import ioClient from 'socket.io-client';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './UserContainer.css';
 

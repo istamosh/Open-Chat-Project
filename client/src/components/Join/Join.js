@@ -11,6 +11,7 @@ const Join = () => {
     // HTML JSX code to be delivered into App.js
     // mt-20 is margin top 20
     // Link codeblock is rigged with onClick event to prevent app break when user tried to input empty string into both Name and Room boxes
+    // onChange will change text in the Join boxes as you type your name and room
     // if onClick is passed, Link will generate main address depending on users' name and room name input
     return (
         <div className="joinOuterContainer">
