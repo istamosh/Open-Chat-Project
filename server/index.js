@@ -16,9 +16,9 @@ const server = http.createServer(app);
 const ioserver = socket(server);
 
 // test
-let users = new getUsersInRoom();
+//let users = new getUsersInRoom();
 
-// connection event function sector
+// code scope below listens to socket type-connection event
 ioserver.on('connection', (socket) => {
     console.log('someone had connected.'); // callback of connected user notification
 
@@ -66,7 +66,7 @@ ioserver.on('connection', (socket) => {
 
     // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
     // the sequence will be: dc, user left, reconnect, connect, user join, greeted.
-    // also emit roomData in disconnect event
+    // also emit roomData on disconnect event
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
 

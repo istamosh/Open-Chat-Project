@@ -79,6 +79,7 @@ const Chat = ({ location }) => {
     // passing room property value into InfoBar JSX
     // retrieve passed parameter values from Input.js into input function
     // sends both messages and name property into Messages.js params
+    // below /div is the clue: <UserContainer users={users} />
     return (
         <div className="outerContainer">
             <div className="container">
@@ -86,7 +87,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
-            <UserContainer users={users} />
+            
         </div>
     );
 }
