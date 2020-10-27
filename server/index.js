@@ -15,6 +15,9 @@ const app = express();
 const server = http.createServer(app);
 const ioserver = socket(server);
 
+// test
+let users = new getUsersInRoom();
+
 // connection event function sector
 ioserver.on('connection', (socket) => {
     console.log('someone had connected.'); // callback of connected user notification

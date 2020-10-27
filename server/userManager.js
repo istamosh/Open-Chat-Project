@@ -43,4 +43,5 @@ const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
 // exports those functions above to be used as a module
 // server-side index.js will be using these
+// there is something to do with getUsersInRoom
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };
