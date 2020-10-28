@@ -20,7 +20,7 @@ const ioserver = socket(server);
 
 // code scope below listens to socket type-connection event
 ioserver.on('connection', (socket) => {
-    console.log('someone had connected.'); // callback of connected user notification
+    //console.log('someone had connected.'); // callback of connected user notification
 
     // send back callback parameter value to clients' specific event emitter
     socket.on('join', ({ name, room }, callback) => {
@@ -45,8 +45,13 @@ ioserver.on('connection', (socket) => {
 
         // if not, join the said room by user request
         socket.join(user.room);
+        //test
+        console.log(`${user.name}#${user.id} had connected in ${user.room}.`);
         // emit roomData property that consist of name and all logged users to all users in that said room
-        ioserver.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+        ioserver.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUsersInRoom(user.room)
+        });
         // positive callback when no error is occured
         callback();
     });

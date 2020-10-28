@@ -41,12 +41,6 @@ const Chat = ({ location }) => {
             }
         });
 
-        // test users list
-        // inspecting users array, i believe from userMan
-        socket.on('updateUsersList', function (users) {
-            console.log(users);
-        });
-
         return () => { // unmounting, disconnect effect
             socket.emit('disconnect'); // when leaving the chat
 
