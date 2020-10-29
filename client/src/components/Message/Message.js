@@ -13,7 +13,6 @@ const Message = ({ message: { user, text }, name }) => {
     if (user === trimmedName) {
         isSentByCurUser = true;
     }
-
     // ternary statement here
     // pr-10 is padding right 10
     // if the one message is sent by user, padding will init. first and make chat bubble padded to the right

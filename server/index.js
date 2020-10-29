@@ -52,6 +52,8 @@ ioserver.on('connection', (socket) => {
             room: user.room,
             users: getUsersInRoom(user.room)
         });
+        //test
+        console.log(`Room ${user.room} contains: ${getUsersInRoom(user.room)}`);
         // positive callback when no error is occured
         callback();
     });
@@ -65,7 +67,8 @@ ioserver.on('connection', (socket) => {
             user: user.name,
             text: message
         });
-
+        //test snooper
+        console.log(`${user.name} says ${message}`);
         callback();
     });
 

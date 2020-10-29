@@ -9,6 +9,8 @@ import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
 
+import UserContainer from '../UserContainer/UserContainer';
+
 // make empty variable for ioClient
 let socket;
 
@@ -23,6 +25,8 @@ const Chat = ({ location }) => {
 
     const [message, setMessage] = useState(''); // adding useEffect for sent message by user
     const [messages, setMessages] = useState([]); // (plural) adding useEffect for sent messages by user in room across all users
+
+    const [users, setUsers] = useState([]); //test
 
     const ENDPOINT = 'localhost:5000';
 
@@ -55,6 +59,13 @@ const Chat = ({ location }) => {
         });
     }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
 
+    //test, adding new useEffect
+    useEffect(() => {
+        socket.on('roomData', (user) => {
+            setUsers([...users, user]);
+        });
+    }, [users]);
+
     // sendMessage event handler/listener from serverside index.js
     // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.
     const sendMessage = (event) => {
@@ -64,9 +75,6 @@ const Chat = ({ location }) => {
             socket.emit('sendMessage', message, () => setMessage(''));
         }
     }
-
-    // message testing purpose
-    console.log(message, messages);
 
     // JSX chat layout
     // check if Enter key is pressed in keypress activity event
@@ -81,7 +89,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
-            
+            <UserContainer users={users} />
         </div>
     );
 }
