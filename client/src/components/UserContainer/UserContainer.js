@@ -2,17 +2,20 @@ import React from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './UserContainer.css';
 
-const UserContainer = ({ roomData: { room, users } }) => (
-    <ScrollToBottom className="userContainer">
-        {users.map((user, i) =>
-            <div key={i}>
-                <div>
-                    <h2>{room}</h2>
+const UserContainer = ({ users }) => {
+    return (
+        <ScrollToBottom className="userContainer">
+            {users.map((user, i) =>
+                <div key={i}>
+                    <div>
+                        <h6>{user}</h6>
+                    </div>
                 </div>
-            </div>)
-        }
-    </ScrollToBottom>
-);
+            )
+            }
+        </ScrollToBottom>
+    );
+}
 
 export default UserContainer;
 

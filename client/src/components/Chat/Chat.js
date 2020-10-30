@@ -59,12 +59,9 @@ const Chat = ({ location }) => {
         });
     }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
 
-    //test, adding new useEffect
-    useEffect(() => {
-        socket.on('roomData', (user) => {
-            setUsers([...users, user]);
-        });
-    }, [users]);
+    socket.on('roomData', () => {
+        setUsers([users]);
+    }); //can't read this property
 
     // sendMessage event handler/listener from serverside index.js
     // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.

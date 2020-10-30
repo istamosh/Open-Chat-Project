@@ -42,8 +42,7 @@ ioserver.on('connection', (socket) => {
             user: 'admin',
             text: `${user.name} came in.`
         });
-
-        // if not, join the said room by user request
+        // join into room
         socket.join(user.room);
         //test
         console.log(`${user.name}#${user.id} had connected in ${user.room}.`);
