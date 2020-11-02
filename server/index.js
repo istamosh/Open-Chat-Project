@@ -51,8 +51,17 @@ ioserver.on('connection', (socket) => {
             room: user.room,
             users: getUsersInRoom(user.room)
         });
+
         //test
-        console.log(`Room ${user.room} contains: ${getUsersInRoom(user.room)}`);
+        const userList = getUsersInRoom(user.room);
+        console.log(`There are ${userList.length} user(s) inside room ${user.room}, contains:`)
+        for (var key in userList) {
+            if (userList.hasOwnProperty(key)) {
+                var value = userList[key];
+                console.log(`${value.name}`);
+            }
+        };
+        
         // positive callback when no error is occured
         callback();
     });
@@ -66,7 +75,7 @@ ioserver.on('connection', (socket) => {
             user: user.name,
             text: message
         });
-        //test snooper
+        //test message snooper
         console.log(`${user.name} says ${message}`);
         callback();
     });
@@ -85,7 +94,7 @@ ioserver.on('connection', (socket) => {
             room: user.room,
             users: getUsersInRoom(user.room)
         });
-
+        console.log(`${user.name} disconnected from ${user.room}.`);
     });
 });
 

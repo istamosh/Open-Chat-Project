@@ -26,7 +26,7 @@ const Chat = ({ location }) => {
     const [message, setMessage] = useState(''); // adding useEffect for sent message by user
     const [messages, setMessages] = useState([]); // (plural) adding useEffect for sent messages by user in room across all users
 
-    const [users, setUsers] = useState([]); //test
+    const [users, setUsers] = useState(''); // not []
 
     const ENDPOINT = 'localhost:5000';
 
@@ -53,16 +53,17 @@ const Chat = ({ location }) => {
     }, [ENDPOINT, location.search]);
 
     // adding useEffect listener from sent message by user in backend section
+    // why empty useEffect parameter? used to be: messages
     useEffect(() => {
         socket.on('message', (message) => {
             setMessages([...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
         });
-    }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
 
-    socket.on('roomData', () => {
-        setUsers([users]);
-    }); //can't read this property
-
+        socket.on('roomData', ({ users }) => { // handles roomData but pick a whole users parent property (inc. name,room,etc. that's why use curly)
+            setUsers(users);
+        });
+    }, []); // run useEffect messages ONLY when messages array pool is changed.
+    
     // sendMessage event handler/listener from serverside index.js
     // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.
     const sendMessage = (event) => {
