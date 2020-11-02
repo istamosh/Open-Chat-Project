@@ -1,4 +1,4 @@
-/* original code by adrianhajdin
+/* customed, original code by adrianhajdin
     GitHub: https://github.com/adrianhajdin/
 */
 
@@ -9,6 +9,16 @@
     color: white;
     height: 60%;
     justify-content: space-between;
+}
+
+.customHeading3 {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.17em;
+    font-weight: bold;
+    color: white;
+    margin-top: 10%;
+    margin-bottom: 1%;
 }
 
 .activeContainer {
