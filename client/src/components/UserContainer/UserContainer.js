@@ -1,19 +1,30 @@
 import React from 'react';
-import ScrollToBottom from 'react-scroll-to-bottom';
 import './UserContainer.css';
+import iconOnline from '../../icons/iconOnline.png';
 
 const UserContainer = ({ users }) => {
     return (
-        <ScrollToBottom className="userContainer">
-            {users.map((user, i) =>
-                <div key={i}>
+        <div className="userContainer"> {
+            users ?
+                (
                     <div>
-                        <h6>{user}</h6>
+                        <h2>User list on current room:</h2>
+                        <div className="activeContainer">
+                            <h3> {
+                                users.map( ({ name }) => (
+                                    <div key={name} className="activeItem">
+                                        <img alt="Icon Online" src={iconOnline} />
+                                        {name}
+                                    </div> )
+                                )
+                            }
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            : null
             }
-        </ScrollToBottom>
+        </div>
     );
 }
 
