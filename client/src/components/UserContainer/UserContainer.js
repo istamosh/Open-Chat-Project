@@ -11,11 +11,11 @@ const UserContainer = ({ users }) => {
                         <div className="customHeading3">User list on current room:</div>
                         <div className="activeContainer">
                             <p> {
-                                users.map( ({ name }) => (
+                                users.map(({ name }) => (
                                     <div key={name} className="activeItem">
                                         <img alt="Icon Online" src={iconOnline} />
                                         {name}
-                                    </div> )
+                                    </div>)
                                 )
                             }
                             </p>
@@ -23,7 +23,7 @@ const UserContainer = ({ users }) => {
                     </div>
                 )
             : null
-            }
+        }
         </div>
     );
 }
