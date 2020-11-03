@@ -59,10 +59,10 @@ const Chat = ({ location }) => {
             setMessages([...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
         });
 
-        socket.on('roomData', ({ users }) => { // handles roomData but pick a whole users parent property (inc. name,room,etc. that's why use curly)
-            setUsers(users);
-        });
-    }, []); // run useEffect messages ONLY when messages array pool is changed.
+        //socket.on('roomData', ({ users }) => { // handles roomData but pick a whole users parent property (inc. name,room,etc. that's why use curly)
+        //    setUsers(users);
+        //});
+    }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
     
     // sendMessage event handler/listener from serverside index.js
     // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.
