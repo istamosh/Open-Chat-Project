@@ -8,9 +8,9 @@ const UserContainer = ({ users }) => {
             users ?
                 (
                     <div>
-                        <div className="customHeading3">User list on current room:</div>
+                        <div className="customHeading3">User list in current room:</div>
                         <div className="activeContainer">
-                            <p> {
+                            <h6> {
                                 users.map(({ name }) => (
                                     <div key={name} className="activeItem">
                                         <img alt="Icon Online" src={iconOnline} />
@@ -18,7 +18,7 @@ const UserContainer = ({ users }) => {
                                     </div>)
                                 )
                             }
-                            </p>
+                            </h6>
                         </div>
                     </div>
                 )
