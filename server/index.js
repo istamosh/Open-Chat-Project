@@ -1,6 +1,7 @@
 const express = require('express');
 const socket = require('socket.io');
 const http = require('http');
+const cors = require('cors');
 
 // import modules from userManager.js
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./userManager.js');
@@ -15,8 +16,10 @@ const app = express();
 const server = http.createServer(app);
 const ioserver = socket(server);
 
-// test
-//let users = new getUsersInRoom();
+// call it as middleware by passing the router dir
+app.use(router);
+// use cors for deployment
+app.use(cors());
 
 // code scope below listens to socket type-connection event
 ioserver.on('connection', (socket) => {
@@ -97,10 +100,6 @@ ioserver.on('connection', (socket) => {
         console.log(`${user.name} disconnected from ${user.room}.`);
     });
 });
-
-// call it as middleware by passing the router dir
-app.use(router);
-
 // make the server listen on and tell the cmd on syntaxed PORT (${...})
 server.listen(PORT, () =>
     console.log(`Server has started and listening on port ${PORT}`));
