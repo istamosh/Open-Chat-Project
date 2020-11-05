@@ -28,7 +28,7 @@ const Chat = ({ location }) => {
 
     const [users, setUsers] = useState(''); // not []
 
-    const ENDPOINT = 'localhost:5000';
+    const ENDPOINT = 'https://react-istacord.herokuapp.com/'; // deployed heroku endpoint
 
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
