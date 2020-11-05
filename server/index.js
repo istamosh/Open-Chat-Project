@@ -6,9 +6,6 @@ const cors = require('cors');
 // import modules from userManager.js
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./userManager.js');
 
-// defining the listening port
-const PORT = 5000 || process.env.PORT;
-
 // define the router directory
 const router = require('./router');
 
@@ -100,6 +97,7 @@ ioserver.on('connection', (socket) => {
         console.log(`${user.name} disconnected from ${user.room}.`);
     });
 });
+const serverPort = 5000;
 // make the server listen on and tell the cmd on syntaxed PORT (${...})
-server.listen(PORT, () =>
-    console.log(`Server has started and listening on port ${PORT}`));
+server.listen(process.env.PORT || serverPort, () =>
+    console.log(`Server has started and listening on port ${serverPort}`));
