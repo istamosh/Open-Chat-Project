@@ -6,5 +6,5 @@ import ReactDOM from 'react-dom';
 import App from './App'
 
 // and inject/import all the created code inside index.html's root section (index.html is inside public folder)
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 //#endregion

@@ -1,9 +1,9 @@
 import React from 'react';
 
 // now using react stb chat module
-import ScrollToBottom from 'react-scroll-to-bottom';
+import STB from 'react-scroll-to-bottom';
 
-import Message from '../Message/Message';
+import Message from './Message/Message';
 
 import './Messages.css';
 
@@ -12,7 +12,7 @@ import './Messages.css';
 // send messages params and name into chat blocks
 // pinpoint className css that using stb module
 const Messages = ({ messages, name }) => (
-    <ScrollToBottom className="messages">
+    <STB className="messages">
         {messages.map((message, i) =>
             <div key={i}>
                 <Message
@@ -22,7 +22,7 @@ const Messages = ({ messages, name }) => (
             </div>
         )
         }
-    </ScrollToBottom>
+    </STB>
 );
 
 export default Messages;

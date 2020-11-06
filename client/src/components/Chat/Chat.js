@@ -1,7 +1,7 @@
 // importing hooks for useEffect = side effect performer
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
-import ioClient from 'socket.io-client';
+import ioClient from "socket.io-client";
 
 import './Chat.css';
 
@@ -10,6 +10,9 @@ import Input from '../Input/Input';
 import Messages from '../Messages/Messages';
 
 import UserContainer from '../UserContainer/UserContainer';
+
+// deployed heroku endpoint
+const ENDPOINT = 'https://react-istacord.herokuapp.com/'; 
 
 // make empty variable for ioClient
 let socket;
@@ -22,21 +25,17 @@ let socket;
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
-
+    const [users, setUsers] = useState(''); // not []
     const [message, setMessage] = useState(''); // adding useEffect for sent message by user
     const [messages, setMessages] = useState([]); // (plural) adding useEffect for sent messages by user in room across all users
-
-    const [users, setUsers] = useState(''); // not []
-
-    const ENDPOINT = 'https://react-istacord.herokuapp.com/'; // deployed heroku endpoint
-
+        
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
 
         socket = ioClient(ENDPOINT);
 
-        setName(name);
         setRoom(room);
+        setName(name);
 
         // emitting join event with name and room params and check for errors and alert about it
         socket.emit('join', { name, room }, (error) => {
@@ -45,20 +44,15 @@ const Chat = ({ location }) => {
             }
         });
 
-        return () => { // unmounting, disconnect effect
-            socket.emit('disconnect'); // when leaving the chat
-
-            socket.off(); // turn off socket client instance
-        }
     }, [ENDPOINT, location.search]);
 
     // adding useEffect listener from sent message by user in backend section
     // why empty useEffect parameter? used to be: messages
+    // if adding messages, STB will work but lag is occured, w/o messages, STB won't work.
     useEffect(() => {
         socket.on('message', message => {
             setMessages([...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
         });
-
         socket.on('roomData', ({ users }) => { // handles roomData but pick a whole users parent property (inc. name,room,etc. that's why use curly)
             setUsers(users);
         });
