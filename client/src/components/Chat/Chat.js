@@ -11,7 +11,7 @@ import Messages from '../Messages/Messages';
 
 import UserContainer from '../UserContainer/UserContainer';
 
-// deployed heroku endpoint
+// deployed heroku endpoint 
 const ENDPOINT = 'https://react-istacord.herokuapp.com/'; 
 
 // make empty variable for ioClient
@@ -43,7 +43,6 @@ const Chat = ({ location }) => {
                 alert(error);
             }
         });
-
     }, [ENDPOINT, location.search]);
 
     // adding useEffect listener from sent message by user in backend section
@@ -51,12 +50,12 @@ const Chat = ({ location }) => {
     // if adding messages, STB will work but lag is occured, w/o messages, STB won't work.
     useEffect(() => {
         socket.on('message', message => {
-            setMessages([...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
+            setMessages(messages => [...messages, message]); // '...' is spreading function and to input in room messages array using submitted user or admin message and then set it
         });
         socket.on('roomData', ({ users }) => { // handles roomData but pick a whole users parent property (inc. name,room,etc. that's why use curly)
             setUsers(users);
         });
-    }, [messages]); // run useEffect messages ONLY when messages array pool is changed.
+    }, []); // run useEffect messages ONLY when messages array pool is changed.
     
     // sendMessage event handler/listener from serverside index.js
     // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.
