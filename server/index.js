@@ -20,8 +20,6 @@ app.use(cors());
 
 // code scope below listens to socket type-connection event
 ioserver.on('connection', (socket) => {
-    //console.log('someone had connected.'); // callback of connected user notification
-
     // send back callback parameter value to clients' specific event emitter
     socket.on('join', ({ name, room }, callback) => {
         // getting either error or user value when trying to adding new user by constructing socket-generated id, name, and room
@@ -44,24 +42,11 @@ ioserver.on('connection', (socket) => {
         });
         // join into room
         socket.join(user.room);
-        //test
-        console.log(`${user.name}#${user.id} had connected in ${user.room}.`);
         // emit roomData property that consist of name and all logged users to all users in that said room
         ioserver.to(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room)
         });
-
-        //test
-        const userList = getUsersInRoom(user.room);
-        console.log(`There are ${userList.length} user(s) inside room ${user.room}, contains:`)
-        for (var key in userList) {
-            if (userList.hasOwnProperty(key)) {
-                var value = userList[key];
-                console.log(`${value.name}`);
-            }
-        };
-        
         // positive callback when no error is occured
         callback();
     });
@@ -75,9 +60,6 @@ ioserver.on('connection', (socket) => {
             user: user.name,
             text: message
         });
-        //test message snooper
-        console.log(`${user.name} says ${message}`);
-        callback();
     });
 
     // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
@@ -94,7 +76,6 @@ ioserver.on('connection', (socket) => {
             room: user.room,
             users: getUsersInRoom(user.room)
         });
-        console.log(`${user.name} disconnected from ${user.room}.`);
     });
 });
 const serverPort = 5000;
