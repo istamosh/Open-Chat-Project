@@ -5,11 +5,10 @@ import ioClient from "socket.io-client";
 
 import './Chat.css';
 
-import InfoBar from '../InfoBar/InfoBar';
-import Input from '../Input/Input';
-import Messages from '../Messages/Messages';
-
-import UserContainer from '../UserContainer/UserContainer';
+import InfoBar from './InfoBar/InfoBar';
+import Input from './Input/Input';
+import Messages from './Messages/Messages';
+import UsersList from './UsersList/UsersList';
 
 // deployed heroku endpoint 
 const ENDPOINT = 'https://react-istacord.herokuapp.com/'; 
@@ -80,7 +79,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
-            <UserContainer users={users} />
+            <UsersList users={users} />
         </div>
     );
 }

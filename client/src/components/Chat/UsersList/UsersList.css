@@ -2,7 +2,7 @@
     GitHub: https://github.com/adrianhajdin/
 */
 
-.userContainer {
+.usersList {
     display: flex;
     flex-direction: column;
     margin-left: 100px;

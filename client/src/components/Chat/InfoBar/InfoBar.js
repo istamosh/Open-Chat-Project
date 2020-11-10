@@ -2,8 +2,8 @@ import React from 'react';
 import './InfoBar.css';
 
 // importing necessary icons for JSX below
-import iconClose from '../../icons/iconClose.png';
-import iconOnline from '../../icons/iconOnline.png';
+import iconClose from '../../../icons/iconClose.png';
+import iconOnline from '../../../icons/iconOnline.png';
 
 // JSX header code here
 // refresh page function

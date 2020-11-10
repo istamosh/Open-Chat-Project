@@ -1,9 +1,9 @@
 import React from 'react';
-import './UserContainer.css';
-import iconOnline from '../../icons/iconOnline.png';
+import './UsersList.css';
+import iconOnline from '../../../icons/iconOnline.png';
 
-const UserContainer = ({ users }) => (
-    <div className="userContainer"> {
+const UsersList = ({ users }) => (
+    <div className="usersList"> {
         users
             ? (
                 <div>
@@ -26,4 +26,4 @@ const UserContainer = ({ users }) => (
     </div>
 );
 
-export default UserContainer;
+export default UsersList;
