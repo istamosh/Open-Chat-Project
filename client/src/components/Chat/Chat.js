@@ -10,8 +10,8 @@ import Input from './Input/Input';
 import Messages from './Messages/Messages';
 import UsersList from './UsersList/UsersList';
 
-// deployed heroku endpoint https://react-istacord.herokuapp.com/
-const ENDPOINT = 'localhost:5000'; 
+// deployed heroku endpoint 
+const ENDPOINT = 'https://react-istacord.herokuapp.com/'; 
 
 // make empty variable for ioClient
 let socket;
