@@ -5,21 +5,24 @@ import './Input.css';
 // make the input as parameters to be passed in Chat.js
 // parsing every typed message and when pressed Enter it will trigger Send message function
 // Input form containing function for sending message
-const Input = ({ setMessage, sendMessage, message }) => (
+const Input = ({ message, setMessage, sendMessage }) => (
     <form className="form">
         <input
             className="input"
             type="text"
             placeholder="Type your message..."
             value={message}
-            onChange={({ target: { value } }) => setMessage(value)}
+            onChange={
+                ({ target: { value } }) =>
+                    setMessage(value)
+            }
             onKeyPress={event => event.key === 'Enter'
                 ? sendMessage(event)
                 : null
             }
         />
-        <button className="sendButton" onClick={event =>
-            sendMessage(event)}>Send</button>
+        <button className="sendButton" onClick={e =>
+            sendMessage(e)}>Send</button>
     </form>
 );
 

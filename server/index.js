@@ -29,6 +29,9 @@ ioserver.on('connection', (socket) => {
         if (error)
             return callback(error);
 
+        // join into room
+        socket.join(user.room);
+
         // emit message event TO USER by usertype admin and their text is calling that name and welcoming room name
         // these emit events below are happens from the backend to the frontend
         socket.emit('message', { //payload below
@@ -40,8 +43,7 @@ ioserver.on('connection', (socket) => {
             user: 'admin',
             text: `${user.name} came in.`
         });
-        // join into room
-        socket.join(user.room);
+        
         // emit roomData property that consist of name and all logged users to all users in that said room
         ioserver.to(user.room).emit('roomData', {
             room: user.room,
@@ -60,6 +62,8 @@ ioserver.on('connection', (socket) => {
             user: user.name,
             text: message
         });
+
+        callback();
     });
 
     // when user disconnects, remove their ID from socket and tell everyone using admin name in respective room that user just left
@@ -68,14 +72,16 @@ ioserver.on('connection', (socket) => {
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
 
-        ioserver.to(user.room).emit('message', {
-            user: 'admin',
-            text: `${user.name} has left.`
-        });
-        ioserver.to(user.room).emit('roomData', {
-            room: user.room,
-            users: getUsersInRoom(user.room)
-        });
+        if (user) {
+            ioserver.to(user.room).emit('message', {
+                user: 'Admin',
+                text: `${user.name} has left.`
+            });
+            ioserver.to(user.room).emit('roomData', {
+                room: user.room,
+                users: getUsersInRoom(user.room)
+            });
+        }
     });
 });
 const serverPort = 5000;

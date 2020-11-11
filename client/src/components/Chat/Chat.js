@@ -1,7 +1,7 @@
 // importing hooks for useEffect = side effect performer
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import ioClient from "socket.io-client";
+import ioClient from 'socket.io-client';
 
 import './Chat.css';
 
@@ -60,7 +60,6 @@ const Chat = ({ location }) => {
     // if message useEffect is committed, then emit listened sendMessage event as message event then input it as setMessage val.
     const sendMessage = (event) => {
         event.preventDefault();
-
         if (message) {
             socket.emit('sendMessage', message, () => setMessage(''));
         }
